@@ -56,22 +56,6 @@ if df is not None:
     fig.update_layout(title='Candlestick Chart', xaxis_title='Date', yaxis_title='Price')
     st.plotly_chart(fig, use_container_width=True)
     
-    #---------------Making future predictions--------------------
-    st.header("Stock Market Metrics Future Prediction :")
-    model = LinearRegression()
-    X = df[['open','high','low','volume']].values
-    y = df['close']
-
-    model.fit(X,y)
-
-    # -----------------Taking User Input :------------
-    open = st.number_input("Open",min_value=0)
-    high = st.number_input("High",min_value=0)
-    low = st.number_input("Low",min_value=0)
-    volume = st.number_input("Volume",min_value=0)
-
-    p = model.predict([[open,high,low,volume]])
-    st.write(f"Predicted Close Price : ${p[0]:.2f}")
 
     # ---------------- Technical Indicators ----------------
     # Adding 5 Stock Market Calculations
@@ -174,6 +158,7 @@ if df is not None:
 
 else:
     st.warning(f"No data available for {selected_company}. Please fetch the data using the sidebar.")
+
 
 
 
